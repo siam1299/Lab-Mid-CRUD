@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Poppins, Poppins;
+            background-color: #f4f4f9;
+            margin: 20px;
+        }
+        h4 {
+            color: #333;
+        }
+        .product-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+        .product-box h1 {
+            font-size: 20px;
+            color: #333;
+            margin: 0;
+        }
+        .product-box p {
+            color: #555;
+            margin: 5px 0;
+        }
+        .action-links {
+            display: flex;
+            gap: 10px;
+        }
+        .action-links a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .update-link {
+            background-color: #007bff;
+        }
+        .update-link:hover {
+            background-color: #0056b3;
+        }
+        .delete-link {
+            background-color: #dc3545;
+        }
+        .delete-link:hover {
+            background-color: #c82333;
+        }
+        .add-product-btn {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .add-product-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<h4>This is My Homepage</h4>
+<a href="{% url 'create-product' %}" class="add-product-btn">Add a new product</a>
+
+{% for i in products %}
+    <div class="product-box">
+        <h1>Name: {{ i.name }}</h1>
+        <p>Age: {{ i.age }}</p>
+        <p>Jersey Number: {{ i.jersey }}</p>
+        <p>Position: {{ i.position }}</p>
+        <div class="action-links">
+            <a href="{% url 'update-product' i.id %}" class="update-link">Update Product</a>
+            <a href="{% url 'delete-product' i.id %}" class="delete-link">Delete Product</a>
+        </div>
+    </div>
+{% endfor %}
+
+</body>
+</html>
